@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="KLAddressSelectorExample" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tk1-bi-3oo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="paa-kx-f2z">
+                                <rect key="frame" x="72.5" y="70" width="230" height="30"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="只显示省份，下次默认选中第一个"/>
+                                <connections>
+                                    <action selector="province:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dsf-4Q-SAP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2xv-NW-tY4">
+                                <rect key="frame" x="26" y="370" width="322" height="30"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="显示省份、城市和区域，下次使用上一次选中的"/>
+                                <connections>
+                                    <action selector="areaSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VSU-hz-DHd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4MA-cB-Jlv">
+                                <rect key="frame" x="33.5" y="310" width="307" height="30"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="显示省份、城市和区域，下次默认选中第一个"/>
+                                <connections>
+                                    <action selector="area:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ctH-sB-Jrf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcC-Yz-1ub">
+                                <rect key="frame" x="49" y="190" width="276" height="30"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="只显示省份和城市，下次默认选中第一个"/>
+                                <connections>
+                                    <action selector="city:" destination="BYZ-38-t0r" eventType="touchUpInside" id="slM-I1-0Yb"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b9T-LP-BNl">
+                                <rect key="frame" x="64.5" y="130" width="245" height="30"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="只显示省份，下次使用上一次选中的"/>
+                                <connections>
+                                    <action selector="provinceSelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="goh-e1-8sx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYw-gc-TYe">
+                                <rect key="frame" x="41.5" y="250" width="291" height="30"/>
+                                <color key="backgroundColor" red="0.98823529409999999" green="0.2156862745" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="只显示省份和城市，下次使用上一次选中的"/>
+                                <connections>
+                                    <action selector="citySelected:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ohj-sc-55K"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="b9T-LP-BNl" firstAttribute="centerX" secondItem="tk1-bi-3oo" secondAttribute="centerX" id="5xJ-xp-ADL"/>
+                            <constraint firstItem="PcC-Yz-1ub" firstAttribute="top" secondItem="b9T-LP-BNl" secondAttribute="bottom" constant="30" id="7ms-6k-DQF"/>
+                            <constraint firstItem="2xv-NW-tY4" firstAttribute="centerX" secondItem="tk1-bi-3oo" secondAttribute="centerX" id="CG7-1u-4BV"/>
+                            <constraint firstItem="4MA-cB-Jlv" firstAttribute="centerX" secondItem="tk1-bi-3oo" secondAttribute="centerX" id="DD9-el-M41"/>
+                            <constraint firstItem="DYw-gc-TYe" firstAttribute="top" secondItem="PcC-Yz-1ub" secondAttribute="bottom" constant="30" id="NtR-te-A2H"/>
+                            <constraint firstItem="4MA-cB-Jlv" firstAttribute="top" secondItem="DYw-gc-TYe" secondAttribute="bottom" constant="30" id="PI8-pu-N2y"/>
+                            <constraint firstItem="b9T-LP-BNl" firstAttribute="top" secondItem="paa-kx-f2z" secondAttribute="bottom" constant="30" id="QzZ-rI-iKL"/>
+                            <constraint firstItem="PcC-Yz-1ub" firstAttribute="centerX" secondItem="tk1-bi-3oo" secondAttribute="centerX" id="rim-gZ-2y9"/>
+                            <constraint firstItem="paa-kx-f2z" firstAttribute="top" secondItem="qhy-7x-QJx" secondAttribute="top" constant="50" id="vA3-n2-ToG"/>
+                            <constraint firstItem="2xv-NW-tY4" firstAttribute="top" secondItem="4MA-cB-Jlv" secondAttribute="bottom" constant="30" id="xHx-IA-pOR"/>
+                            <constraint firstItem="paa-kx-f2z" firstAttribute="centerX" secondItem="tk1-bi-3oo" secondAttribute="centerX" id="xrU-Az-Kc9"/>
+                            <constraint firstItem="DYw-gc-TYe" firstAttribute="centerX" secondItem="tk1-bi-3oo" secondAttribute="centerX" id="yHh-06-m4c"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="qhy-7x-QJx"/>
+                    </view>
+                    <connections>
+                        <outlet property="thirdButton" destination="PcC-Yz-1ub" id="nDf-6W-bNA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
