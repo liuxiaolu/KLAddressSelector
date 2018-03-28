@@ -78,7 +78,7 @@ class KLCityPickerView: UIView {
     }
     
     // 设置取消、确定按钮的字体大小
-    public var titleBarFont: UIFont?{
+    public var titleToolBarFont: UIFont?{
         willSet{
             sureButton.titleLabel?.font = newValue
             cancleButton.titleLabel?.font = newValue
@@ -96,10 +96,10 @@ class KLCityPickerView: UIView {
             sureButton.setTitleColor(newValue, for: .normal)
         }
     }
-    //设置titleBar的背景颜色
-    public var titleBarBackgroundColor: UIColor?{
+    //设置titleToolBar的背景颜色
+    public var titleToolBarBackgroundColor: UIColor?{
         willSet{
-            titleBar.backgroundColor = newValue
+            titleToolBar.backgroundColor = newValue
         }
     }
     
@@ -148,7 +148,7 @@ class KLCityPickerView: UIView {
     /// 创建城市选择器
      lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView(frame: CGRect(x: 0, y:
-            titleBar.kl_bottom, width:klScreen_width , height: containView.kl_height - titleBar.kl_height))
+            titleToolBar.kl_bottom, width:klScreen_width , height: containView.kl_height - titleToolBar.kl_height))
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.backgroundColor = UIColor().hexStringToColor(hexString: "0xffffff", alpha: 1)
@@ -162,16 +162,16 @@ class KLCityPickerView: UIView {
         return containView
     }()
     
-    /// 创建容器中的titleBar
-     lazy var titleBar: UIView = {
-        let titleBar = UIView(frame: CGRect(x: 0, y: 0, width: klScreen_width, height: kl_scaleHeight(h: 55)))
-        titleBar.backgroundColor = UIColor().hexStringToColor(hexString: "0xf6f6f6",alpha: 1)
-        return titleBar
+    /// 创建容器中的titleToolBar
+     lazy var titleToolBar: UIView = {
+        let titleToolBar = UIView(frame: CGRect(x: 0, y: 0, width: klScreen_width, height: kl_scaleHeight(h: 55)))
+        titleToolBar.backgroundColor = UIColor().hexStringToColor(hexString: "0xf6f6f6",alpha: 1)
+        return titleToolBar
     }()
     
     /// 创建确定按钮
      lazy var sureButton: UIButton = {
-        let sureButton = UIButton(frame: CGRect(x: titleBar.kl_width - kl_scaleWidth(w: 65), y: 0, width: kl_scaleWidth(w: 65), height: titleBar.kl_height))
+        let sureButton = UIButton(frame: CGRect(x: titleToolBar.kl_width - kl_scaleWidth(w: 65), y: 0, width: kl_scaleWidth(w: 65), height: titleToolBar.kl_height))
         sureButton.setTitle("确定", for: .normal)
         sureButton.addTarget(self, action: #selector(addressButtonOnclik), for: .touchUpInside)
         sureButton.setTitleColor(UIColor().hexStringToColor(hexString: "0xff0000", alpha: 1), for: .normal)
@@ -181,7 +181,7 @@ class KLCityPickerView: UIView {
     
     /// 创建取消按钮
      lazy var cancleButton: UIButton = {
-        let cancleButton = UIButton(frame: CGRect(x: 0, y: 0, width: kl_scaleWidth(w: 65), height: titleBar.kl_height))
+        let cancleButton = UIButton(frame: CGRect(x: 0, y: 0, width: kl_scaleWidth(w: 65), height: titleToolBar.kl_height))
         cancleButton.setTitle("取消", for: .normal)
         cancleButton.addTarget(self, action: #selector(addressButtonOnclik), for: .touchUpInside)
         cancleButton.setTitleColor(UIColor().hexStringToColor(hexString: "0x666666", alpha: 1), for: .normal)
@@ -206,14 +206,14 @@ class KLCityPickerView: UIView {
         self.frame = CGRect(x: 0, y: 0, width: klScreen_width, height: klScreen_height)
         // 添加容器
         addSubview(containView)
-        // 添加titleBar
-        containView.addSubview(titleBar)
+        // 添加titleToolBar
+        containView.addSubview(titleToolBar)
         // 添加pickerView
         containView.addSubview(pickerView)
         // 添加确定按钮
-        titleBar.addSubview(sureButton)
+        titleToolBar.addSubview(sureButton)
         // 添加取消按钮
-        titleBar.addSubview(cancleButton)
+        titleToolBar.addSubview(cancleButton)
     }
     
     //MARK: -获取数据
