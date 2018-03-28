@@ -15,7 +15,7 @@ s.ios.deployment_target = '9.0'
 s.source = { :git => 'https://github.com/liuxiaolu/KLAddressSelector.git', :tag => s.version }
 s.source_files = 'KLAddressSelectorExample/AddressView/*.swift'
 s.resources = 'KLAddressSelectorExample/AddressView/*.plist'
-s.dependency 'SnapKit'
+#s.dependency 'SnapKit'
 
 s.requires_arc = true
 
