@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SnapKit
 
 @objc protocol KLCityPickerViewDelegate {
      @objc optional func addressPickerViewArea(province: String?, city: String?, area: String?)
@@ -147,8 +148,9 @@ class KLCityPickerView: UIView {
     //MARK: -懒加载
     /// 创建城市选择器
      lazy var pickerView: UIPickerView = {
-        let pickerView = UIPickerView(frame: CGRect(x: 0, y:
-            titleToolBar.kl_bottom, width:klScreen_width , height: containView.kl_height - titleToolBar.kl_height))
+//       let pickerView = UIPickerView(frame: CGRect(x: 0, y:
+//            titleToolBar.kl_bottom, width:klScreen_width , height: containView.kl_height - titleToolBar.kl_height))
+        let pickerView = UIPickerView()
         pickerView.delegate = self
         pickerView.dataSource = self
         pickerView.backgroundColor = UIColor().hexStringToColor(hexString: "0xffffff", alpha: 1)
@@ -171,7 +173,8 @@ class KLCityPickerView: UIView {
     
     /// 创建确定按钮
      lazy var sureButton: UIButton = {
-        let sureButton = UIButton(frame: CGRect(x: titleToolBar.kl_width - kl_scaleWidth(w: 65), y: 0, width: kl_scaleWidth(w: 65), height: titleToolBar.kl_height))
+//        let sureButton = UIButton(frame: CGRect(x: titleToolBar.kl_width - kl_scaleWidth(w: 65), y: 0, width: kl_scaleWidth(w: 65), height: titleToolBar.kl_height))
+        let sureButton = UIButton()
         sureButton.setTitle("确定", for: .normal)
         sureButton.addTarget(self, action: #selector(addressButtonOnclik), for: .touchUpInside)
         sureButton.setTitleColor(UIColor().hexStringToColor(hexString: "0xff0000", alpha: 1), for: .normal)
@@ -181,7 +184,8 @@ class KLCityPickerView: UIView {
     
     /// 创建取消按钮
      lazy var cancleButton: UIButton = {
-        let cancleButton = UIButton(frame: CGRect(x: 0, y: 0, width: kl_scaleWidth(w: 65), height: titleToolBar.kl_height))
+//        let cancleButton = UIButton(frame: CGRect(x: 0, y: 0, width: kl_scaleWidth(w: 65), height: titleToolBar.kl_height))
+        let cancleButton = UIButton()
         cancleButton.setTitle("取消", for: .normal)
         cancleButton.addTarget(self, action: #selector(addressButtonOnclik), for: .touchUpInside)
         cancleButton.setTitleColor(UIColor().hexStringToColor(hexString: "0x666666", alpha: 1), for: .normal)
@@ -194,6 +198,9 @@ class KLCityPickerView: UIView {
         super.init(frame: frame)
         // 设置界面
         kl_setView()
+        
+        //设置数据
+        kl_layoutSubviws()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -214,6 +221,23 @@ class KLCityPickerView: UIView {
         titleToolBar.addSubview(sureButton)
         // 添加取消按钮
         titleToolBar.addSubview(cancleButton)
+    }
+    
+    // 设置尺寸
+    func kl_layoutSubviws() {
+        pickerView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(containView)
+            make.height.equalTo(kl_scaleHeight(h: 215))
+        }
+        sureButton.snp.makeConstraints { (make) in
+            make.right.top.bottom.equalTo(titleToolBar)
+            make.width.equalTo(kl_scaleWidth(w: 65))
+        }
+        
+        cancleButton.snp.makeConstraints { (make) in
+            make.left.top.bottom.equalTo(titleToolBar)
+             make.width.equalTo(kl_scaleWidth(w: 65))
+        }
     }
     
     //MARK: -获取数据
