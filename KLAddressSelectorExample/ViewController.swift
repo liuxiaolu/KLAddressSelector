@@ -43,10 +43,10 @@ class ViewController: UIViewController {
         address.cancleButtonCoclor = UIColor.blue
         
         // 设置确定和取消按钮的文字大小
-        address.toolBarFont = UIFont.systemFont(ofSize: 20)
+        address.titleBarFont = UIFont.systemFont(ofSize: 20)
         
         // 设置toolBar的背景颜色
-        address.toolBarBackgroundColor = UIColor.brown
+        address.titleBarBackgroundColor = UIColor.brown
         
         // 设置pickerView的背景颜色
         address.pickerViewBackgroundColor = UIColor.yellow
