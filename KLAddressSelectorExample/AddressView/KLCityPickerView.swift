@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import SnapKit
+
 
 @objc protocol KLCityPickerViewDelegate {
      @objc optional func addressPickerViewArea(province: String?, city: String?, area: String?)
@@ -223,23 +223,7 @@ class KLCityPickerView: UIView {
         titleToolBar.addSubview(cancleButton)
     }
     
-    // 设置尺寸
-//    func kl_layoutSubviws() {
-//        pickerView.snp.makeConstraints { (make) in
-//            make.left.right.bottom.equalTo(containView)
-//            make.height.equalTo(kl_scaleHeight(h: 215))
-//        }
-//        sureButton.snp.makeConstraints { (make) in
-//            make.right.top.bottom.equalTo(titleToolBar)
-//            make.width.equalTo(kl_scaleWidth(w: 65))
-//        }
-//
-//        cancleButton.snp.makeConstraints { (make) in
-//            make.left.top.bottom.equalTo(titleToolBar)
-//             make.width.equalTo(kl_scaleWidth(w: 65))
-//        }
-//    }
-    
+
     //MARK: -获取数据
      func kl_getData(){
         let path = Bundle.main.path(forResource: "city", ofType: "plist")

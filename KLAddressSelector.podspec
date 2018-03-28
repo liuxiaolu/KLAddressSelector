@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name = 'KLAddressSelector'
-s.version = '0.0.9'
+s.version = '0.1.1'
 s.license = 'MIT'
 s.summary = '地址选择器'
 s.homepage = 'https://github.com/liuxiaolu/KLAddressSelector'
