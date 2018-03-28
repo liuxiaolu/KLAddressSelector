@@ -65,46 +65,46 @@ class KLCityPickerView: UIView {
     public weak var dataDelegate: KLCityPickerViewDelegate?
     //MARK: -外部参数
     /// pickerView的字体大小
-    var pickerLabelFont: UIFont?{
+    public var pickerLabelFont: UIFont?{
         willSet{
             pickerView.reloadAllComponents()
         }
     }
     /// pickerView的字体颜色
-    var pickerLabelTextCoclor: UIColor?{
+    public var pickerLabelTextCoclor: UIColor?{
         willSet{
             pickerView.reloadAllComponents()
         }
     }
     
     // 设置取消、确定按钮的字体大小
-    var toolBarFont: UIFont?{
+    public var toolBarFont: UIFont?{
         willSet{
             sureButton.titleLabel?.font = newValue
             cancleButton.titleLabel?.font = newValue
         }
     }
     // 设置取消按钮的颜色
-    var cancleButtonCoclor: UIColor?{
+    public var cancleButtonCoclor: UIColor?{
         willSet{
             cancleButton.setTitleColor(newValue, for: .normal)
         }
     }
     // 设置确定按钮的颜色
-    var sureButtonCoclor: UIColor?{
+    public var sureButtonCoclor: UIColor?{
         willSet{
             sureButton.setTitleColor(newValue, for: .normal)
         }
     }
     //设置toolbar的背景颜色
-    var toolBarBackgroundColor: UIColor?{
+    public var toolBarBackgroundColor: UIColor?{
         willSet{
             toolBar.backgroundColor = newValue
         }
     }
     
     //设置pickView的背景颜色
-    var pickerViewBackgroundColor: UIColor?{
+    public var pickerViewBackgroundColor: UIColor?{
         willSet{
             pickerView.backgroundColor = newValue
         }
