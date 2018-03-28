@@ -111,26 +111,26 @@ class KLCityPickerView: UIView {
     }
     //MARK: -内部参数
     // 接收参数的数据
-    private var dataSource = [Dictionary<String, Dictionary<String, Dictionary<String,[String]>>>]() // Array<Any>()
+     var dataSource = [Dictionary<String, Dictionary<String, Dictionary<String,[String]>>>]() // Array<Any>()
     // 一共显示多少列
-    private var columnCount: Int?
+     var columnCount: Int?
     // 省
-    private var provinceArray = [String]()
+     var provinceArray = [String]()
     // 市
-    private var cityArray = [String]()
+     var cityArray = [String]()
     // 区
-    private var areaArray = [String]()
+     var areaArray = [String]()
     // 默认选中省
-    private var selectedProvince: String?
+     var selectedProvince: String?
     // 默认选中市
-    private var selectedCity: String?
+     var selectedCity: String?
     // 默认选中区
-    private var selectedArea: String?
+     var selectedArea: String?
     // 记录省份选中的位置
-    private var selectedProvinceIndex: Int = 0
+     var selectedProvinceIndex: Int = 0
     
     //设置选中的类型
-    private var showType: KLAddressPickerType = .area {
+     var showType: KLAddressPickerType = .area {
         willSet{
             columnCount = newValue.rawValue
             pickerView.reloadAllComponents()
@@ -138,15 +138,15 @@ class KLCityPickerView: UIView {
     }
     // 回调函数
     // 区域block
-    private var selectedAreaBlock:((_ province:String, _ city:String, _ area:String)->())?
+     var selectedAreaBlock:((_ province:String, _ city:String, _ area:String)->())?
     // 省份block
-    private var selectedProvinceBlock:((_ province:String)->())?
+     var selectedProvinceBlock:((_ province:String)->())?
     // 城市block
-    private var selectedCityBlock:((_ province:String, _ city:String)->())?
+     var selectedCityBlock:((_ province:String, _ city:String)->())?
     
     //MARK: -懒加载
     /// 创建城市选择器
-    private lazy var pickerView: UIPickerView = {
+     lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView(frame: CGRect(x: 0, y:
             toolBar.kl_bottom, width:klScreen_width , height: containView.kl_height - toolBar.kl_height))
         pickerView.delegate = self
@@ -156,21 +156,21 @@ class KLCityPickerView: UIView {
     }()
     
     /// 创建容器
-    private lazy var containView: UIView = {
+     lazy var containView: UIView = {
         let containView = UIView(frame: CGRect(x: 0, y: klScreen_height, width:klScreen_width , height: kl_scaleHeight(h: 270)))
         containView.backgroundColor = UIColor.gray
         return containView
     }()
     
     /// 创建容器中的toolBar
-    private lazy var toolBar: UIView = {
+     lazy var toolBar: UIView = {
         let toolBar = UIView(frame: CGRect(x: 0, y: 0, width: klScreen_width, height: kl_scaleHeight(h: 55)))
         toolBar.backgroundColor = UIColor().hexStringToColor(hexString: "0xf6f6f6",alpha: 1)
         return toolBar
     }()
     
     /// 创建确定按钮
-    private lazy var sureButton: UIButton = {
+     lazy var sureButton: UIButton = {
         let sureButton = UIButton(frame: CGRect(x: toolBar.kl_width - kl_scaleWidth(w: 65), y: 0, width: kl_scaleWidth(w: 65), height: toolBar.kl_height))
         sureButton.setTitle("确定", for: .normal)
         sureButton.addTarget(self, action: #selector(addressButtonOnclik), for: .touchUpInside)
@@ -180,7 +180,7 @@ class KLCityPickerView: UIView {
     }()
     
     /// 创建取消按钮
-    private lazy var cancleButton: UIButton = {
+     lazy var cancleButton: UIButton = {
         let cancleButton = UIButton(frame: CGRect(x: 0, y: 0, width: kl_scaleWidth(w: 65), height: toolBar.kl_height))
         cancleButton.setTitle("取消", for: .normal)
         cancleButton.addTarget(self, action: #selector(addressButtonOnclik), for: .touchUpInside)
@@ -202,7 +202,7 @@ class KLCityPickerView: UIView {
     
     //MARK: -界面初始化
     /// 初始化界面
-    private func kl_setView(){
+     func kl_setView(){
         self.frame = CGRect(x: 0, y: 0, width: klScreen_width, height: klScreen_height)
         // 添加容器
         addSubview(containView)
@@ -217,7 +217,7 @@ class KLCityPickerView: UIView {
     }
     
     //MARK: -获取数据
-    private func kl_getData(){
+     func kl_getData(){
         let path = Bundle.main.path(forResource: "city", ofType: "plist")
         self.dataSource = NSArray(contentsOfFile: path!) as! [Dictionary<String, Dictionary<String, Dictionary<String,[String]>>>]
         //获取省份
@@ -319,7 +319,7 @@ class KLCityPickerView: UIView {
     /// 获取市
     /// - Parameter provinceIndex: 省份的id
     /// - Returns: 返回某个省份对应的市
-    private func getCityNameFromProvinceIndex(provinceIndex: Int)->([String]){
+     func getCityNameFromProvinceIndex(provinceIndex: Int)->([String]){
         let tempCityArray = self.dataSource[provinceIndex][self.provinceArray[provinceIndex]]
 
         var tempArray = [String]()
@@ -337,7 +337,7 @@ class KLCityPickerView: UIView {
     ///   - provinceIndex: 省份的id
     ///   - cityIndex: 市的id
     /// - Returns: 返回某个省份对应的市对应的区
-    private func getAreanamesFromProvinceIndex(provinceIndex: Int, cityIndex: Int)->[String]{
+     func getAreanamesFromProvinceIndex(provinceIndex: Int, cityIndex: Int)->[String]{
         let tempCityArray = self.dataSource[provinceIndex][self.provinceArray[provinceIndex]]!
     
         var areaArray = [[String:[String]]]()
@@ -354,7 +354,7 @@ class KLCityPickerView: UIView {
     }
     
     /// 显示view
-    private func showView() {
+     func showView() {
         UIApplication.shared.keyWindow?.addSubview(self)
         backgroundColor = UIColor.clear
         UIView.animate(withDuration: 0.3) {
@@ -364,7 +364,7 @@ class KLCityPickerView: UIView {
     }
 
     /// 隐藏View
-    private func hideView() {
+     func hideView() {
         UIView.animate(withDuration: 0.3, animations: {
             self.backgroundColor = UIColor.clear
             self.containView.kl_y =  klScreen_height
@@ -423,7 +423,7 @@ class KLCityPickerView: UIView {
     }
     
     //MARK: - 基本方法
-    private func addressPickerViewWithProvince(province: String?, city: String?, area: String?, provinceBlock:((String)->())?, cityBlock:((String, String)->())?, areaBlock:((String, String, String)->())?, showType: KLAddressPickerType){
+     func addressPickerViewWithProvince(province: String?, city: String?, area: String?, provinceBlock:((String)->())?, cityBlock:((String, String)->())?, areaBlock:((String, String, String)->())?, showType: KLAddressPickerType){
         selectedProvince = province
         selectedCity = city
         selectedArea = area
