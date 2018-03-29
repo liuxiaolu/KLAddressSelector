@@ -9,7 +9,7 @@
 import UIKit
 
 
-@objc protocol KLCityPickerViewDelegate {
+@objc public protocol KLCityPickerViewDelegate {
      @objc optional func addressPickerViewArea(province: String?, city: String?, area: String?)
 //     @objc optional func addressPickerViewCity(province: String?, city: String?)
 //     @objc optional func addressPickerViewProvince(province: String?)
@@ -22,46 +22,10 @@ enum KLAddressPickerType: Int {
     case city = 2
     // 显示省份和城市和区域
     case area = 3
-    
 }
 
-// MARK: - 代理方式传值
-extension KLCityPickerView {
-    
-    //初始化方法
-    public func areaPickerViewProvince(delegate:KLCityPickerViewDelegate){
-        dataDelegate = delegate
-        addressPickerViewWithProvince(province: nil, city: nil, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .province)
-    }
-    
-    public func areaPickerViewProvince(provine:String?, delegate:KLCityPickerViewDelegate){
-        dataDelegate = delegate
-        addressPickerViewWithProvince(province: provine, city: nil, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .province)
-    }
-    
-    
-    public func areaPickerViewCity(delegate:KLCityPickerViewDelegate){
-        dataDelegate = delegate
-        addressPickerViewWithProvince(province: nil, city: nil, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .city)
-    }
-    
-    public func areaPickerViewCity(provine: String?, city: String?, delegate: KLCityPickerViewDelegate){
-        dataDelegate = delegate
-        addressPickerViewWithProvince(province: provine, city: city, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .city)
-    }
-    
-    public func areaPickerViewArea(delegate:KLCityPickerViewDelegate){
-        dataDelegate = delegate
-        addressPickerViewWithProvince(province: nil, city: nil, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .area)
-    }
-    
-    public func areaPickerViewArea(provine: String?, city: String?, area: String?, delegate:KLCityPickerViewDelegate){
-        dataDelegate = delegate
-        addressPickerViewWithProvince(province: provine, city: city, area: area, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .area)
-    }
-}
 
-class KLCityPickerView: UIView {
+public class KLCityPickerView: UIView {
     
     public weak var dataDelegate: KLCityPickerViewDelegate?
     //MARK: -外部参数
@@ -203,7 +167,7 @@ class KLCityPickerView: UIView {
 //        kl_layoutSubviws()
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -226,7 +190,9 @@ class KLCityPickerView: UIView {
 
     //MARK: -获取数据
      func kl_getData(){
-        let path = Bundle.main.path(forResource: "city", ofType: "plist")
+        print(Bundle.main)
+//        let path = Bundle.main.path(forResource: "city", ofType: "plist")
+        let path = Bundle(for: self.classForCoder).path(forResource: "city", ofType: "plist")
         self.dataSource = NSArray(contentsOfFile: path!) as! [Dictionary<String, Dictionary<String, Dictionary<String,[String]>>>]
         //获取省份
         var tempProvinceArray = [String]()
@@ -384,7 +350,7 @@ class KLCityPickerView: UIView {
     //MARK: - 初始化
     /// 显示省份
     /// - Parameter addressBlock: 回调返回省份
-    func provincePickerViewWithProvinceBlock(addressBlock:((String)->())?){
+    public func provincePickerViewWithProvinceBlock(addressBlock:((String)->())?){
         addressPickerViewWithProvince(province: nil, city: nil, area: nil, provinceBlock: addressBlock, cityBlock: nil, areaBlock: nil, showType: .province)
     }
     
@@ -392,14 +358,14 @@ class KLCityPickerView: UIView {
     /// - Parameters:
     ///   - province: 传入选中的省份
     ///   - addressBlock: 回调返回省份
-    func provincePickerViewWithProvince(province: String?, addressBlock:((String)->())?){
+    public func provincePickerViewWithProvince(province: String?, addressBlock:((String)->())?){
         addressPickerViewWithProvince(province: province, city: nil, area: nil, provinceBlock: addressBlock, cityBlock: nil, areaBlock: nil, showType: .province)
     }
     
     /// 显示省份和城市
     ///
     /// - Parameter addressBlock: 返回省份和城市
-    func cityPickerViewWithCityBlock(addressBlock:((String, String)->())?) {
+    public func cityPickerViewWithCityBlock(addressBlock:((String, String)->())?) {
         addressPickerViewWithProvince(province: nil, city: nil, area: nil, provinceBlock: nil, cityBlock: addressBlock, areaBlock: nil, showType: .city)
     }
     
@@ -409,13 +375,13 @@ class KLCityPickerView: UIView {
     ///   - procvince: 传入选中的省份
     ///   - city: 传入选中的城市
     ///   - addressBlock: 返回选中的省份和城市
-    func cityPickerViewWithProvince(procvince: String?, city: String?, addressBlock:((String, String)->())?){
+    public func cityPickerViewWithProvince(procvince: String?, city: String?, addressBlock:((String, String)->())?){
         addressPickerViewWithProvince(province: procvince, city: city, area: nil, provinceBlock: nil, cityBlock: addressBlock, areaBlock: nil, showType: .city)
     }
     
     /// 显示省份市和区域
     /// - Parameter province: 回调省份市和区域
-    func areaPickerViewWithareaBlock(addressBlock:((String, String, String)->())?){
+    public func areaPickerViewWithareaBlock(addressBlock:((String, String, String)->())?){
         addressPickerViewWithProvince(province: nil, city: nil, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: addressBlock, showType: .area)
     }
     
@@ -448,11 +414,11 @@ class KLCityPickerView: UIView {
 //MARK: -UIPickerViewDataSource, UIPickerViewDelegate 方法
 extension KLCityPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+    public func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return self.columnCount ?? 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    public func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if component == 0 {
             return self.provinceArray.count
         } else if component == 1 {
@@ -463,7 +429,7 @@ extension KLCityPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         return 0
     }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    public func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         var label = view as? UILabel
         if label == nil {
             label = UILabel(frame: CGRect(x: 0, y: 0, width: kl_width/3, height: 30))
@@ -483,7 +449,7 @@ extension KLCityPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         return label!
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    public func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 { // 选择省份
             selectedProvinceIndex = row
             switch showType {
@@ -537,7 +503,44 @@ extension KLCityPickerView: UIPickerViewDataSource, UIPickerViewDelegate {
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+    public func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
         return 40
     }
 }
+
+// MARK: - 代理方式传值
+extension KLCityPickerView {
+    
+    //初始化方法
+    public func areaPickerViewProvince(delegate:KLCityPickerViewDelegate){
+        dataDelegate = delegate
+        addressPickerViewWithProvince(province: nil, city: nil, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .province)
+    }
+    
+    public func areaPickerViewProvince(provine:String?, delegate:KLCityPickerViewDelegate){
+        dataDelegate = delegate
+        addressPickerViewWithProvince(province: provine, city: nil, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .province)
+    }
+    
+    
+    public func areaPickerViewCity(delegate:KLCityPickerViewDelegate){
+        dataDelegate = delegate
+        addressPickerViewWithProvince(province: nil, city: nil, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .city)
+    }
+    
+    public func areaPickerViewCity(provine: String?, city: String?, delegate: KLCityPickerViewDelegate){
+        dataDelegate = delegate
+        addressPickerViewWithProvince(province: provine, city: city, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .city)
+    }
+    
+    public func areaPickerViewArea(delegate:KLCityPickerViewDelegate){
+        dataDelegate = delegate
+        addressPickerViewWithProvince(province: nil, city: nil, area: nil, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .area)
+    }
+    
+    public func areaPickerViewArea(provine: String?, city: String?, area: String?, delegate:KLCityPickerViewDelegate){
+        dataDelegate = delegate
+        addressPickerViewWithProvince(province: provine, city: city, area: area, provinceBlock: nil, cityBlock: nil, areaBlock: nil, showType: .area)
+    }
+}
+
